@@ -1,0 +1,264 @@
+body {
+    
+    background-color: #ddd;
+}
+
+header {
+	padding: 0 20px;
+	min-height: 120px;
+	position: relative;
+    background: #efefef;
+	/*background: #1F3946;*/
+}
+.search-busqueda {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	width: 300px;
+}
+.social-c {
+	margin-top: 55px;
+}
+.right {
+    float: right;
+}
+.social-c ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.social-c ul li {
+    float: left;
+    margin-left: 10px;
+}
+li:first-child {
+    margin-left: 0;
+}
+.social-c ul li a {
+    display: block;
+    width: 48px;
+    height: 48px;
+}
+.social-c ul li a.fb {
+    background: url(../../img/web/fb.png?v1) no-repeat;
+    background-size: 100% 100%;
+}
+.social-c ul li a.tw {
+    background: url(../../img/web/tw.png?v1) no-repeat;
+    background-size: 100% 100%;
+}
+.social-c ul li a.you {
+    background: url(../../img/web/you.png?v1) no-repeat;
+    background-size: 100% 100%;
+}
+.social-c ul li a.fc {
+    background: url(../../img/web/fc.png?v1) no-repeat;
+    background-size: 100% 100%;
+}
+
+.nav-center {
+	text-align: center;
+	height: 42px;
+	/*background: #b8650b;
+	background: -moz-linear-gradient(top,#b8650b 0,#ff9100 100%);
+	background: -webkit-linear-gradient(top,#b8650b 0,#ff9100 100%);
+	background: linear-gradient(to bottom,#b8650b 0,#ff9100 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b8650b', endColorstr='#ff9100', GradientType=0);*/
+background: rgba(41,72,125,1);
+background: -moz-linear-gradient(top, rgba(41,72,125,1) 0%, rgba(66,103,178,1) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(41,72,125,1)), color-stop(100%, rgba(66,103,178,1)));
+background: -webkit-linear-gradient(top, rgba(41,72,125,1) 0%, rgba(66,103,178,1) 100%);
+background: -o-linear-gradient(top, rgba(41,72,125,1) 0%, rgba(66,103,178,1) 100%);
+background: -ms-linear-gradient(top, rgba(41,72,125,1) 0%, rgba(66,103,178,1) 100%);
+background: linear-gradient(to bottom, rgba(41,72,125,1) 0%, rgba(66,103,178,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#29487d', endColorstr='#4267b2', GradientType=0 );
+}
+.nav-center ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+    display: inline-block;
+    vertical-align: top;
+}
+.nav-center ul li.default a {
+    border-right: 1px solid #29487d;
+    padding: 0 35px;
+    color: #fff;
+    font-size: 15px;
+    font-family: "Gotham Medium",arial;
+}
+.nav-center ul li a {
+    text-transform: uppercase;
+    display: block;
+    line-height: 42px;
+    font-size: 15px;
+    position: relative;
+}
+
+.nav-center ul li {
+    float: left;
+}
+.	 .nav-center ul li.default a, .active-skin .nav-center ul li.p-oscar a, .active-skin .nav-center ul li.stw-50 a {
+    padding: 0 17.9px;
+}
+nav h1 {
+    margin-top: -110px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+nav h1 a {
+    width: 276px;
+    height: 150px;
+     background: url(../../img/web/videocine.jpg?v1) no-repeat; 
+    display: block;
+    /* text-indent: -999999px; */
+    /* border: 2px dotted #dc3545; */
+    background-color: #e9ecef;
+    line-height: 4em;
+    padding-top: 2em;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.active-skin .nav-center ul li a {
+    font-size: 14px;
+}
+.nav-center .border-right-none a {
+    border-right: 0!important;
+}
+.active-skin .nav-center ul li:last-child.default a {
+    border-right: 0;
+}
+
+.nav-tag {
+    background: #FFF;
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
+    -moz-box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
+    height: 35px;
+    text-align: center;
+}
+.fluid-list {
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+}
+
+.nav-tag ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+    display: inline-block;
+    vertical-align: top;
+}
+.nav-tag ul li {
+    float: left;
+    line-height: 30px;
+    padding: 0 5px;
+}
+.nav-tag ul li:first-child {
+    color: red;
+    font-size: 13px;
+    margin-right: 10px;
+    line-height: 35px;
+    font-family: Montserrat,sans-serif;
+    font-weight: 400;
+}
+.nav-tag ul li a {
+    line-height: 35px;
+    font-size: 15px;
+    color: #444;
+    font-family: Montserrat,sans-serif;
+    font-weight: 400;
+    text-indent: -9999999px;
+}
+.nav-tag ul li:first-child span {
+    width: 15px;
+    height: 21px;
+    background: url(../../img/web/hot.png?v1) no-repeat;
+    margin-right: 5px;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 6px;
+}
+
+
+
+/*
+        css slider jquery.animated
+*/
+.anim-slider{
+    background-color: #fff;
+
+}
+.anim-slider:before {
+  content: "";
+  left: 0;
+  right: 0;
+  z-index: -1;
+  
+  display: block;
+  background-image: url('http://666a658c624a3c03a6b2-25cda059d975d2f318c03e90bcf17c40.r92.cf1.rackcdn.com/unsplash_527bf56961712_1.JPG');
+  background-image: url('../../img/web/slider/before_movie.jpg');
+
+  
+  width: 1800px;
+  height: 1200px;
+  
+/*  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);*/
+  -webkit-filter: grayscale(1) sepia(1);
+  filter: grayscale(1) sepia(1);
+
+}
+
+
+
+
+.anim-slide{opacity: 0;}
+.anim-slide-this{opacity: 1;}
+
+li.anim-slide:nth-of-type(1){background:#fff url("../../img/web/slider/island-view.jpg") 100%/cover;}
+li.anim-slide:nth-of-type(2){background:#fff url("../../img/web/slider/summer-experience.jpg") 100%/cover;}
+li.anim-slide:nth-of-type(3){background:#fff url("../../img/web/slider/Animations.gif") 100%/cover;}
+
+li.anim-slide:nth-of-type(1)>h1
+{
+    position: static;
+    display: inline-block;
+    margin: 0;
+    font-size:40px;
+    padding: 0px 25px;
+}
+h1#looks{background-color:#fff;color:#34495e;}
+h1#amazing{background-color:#34495e;color:#fff;margin: 150px -5px;}
+h1#place{background-color:#3498db;color:#fff;}
+
+
+li.anim-slide:nth-of-type(2)>div
+{
+    width: 100%;
+    height: 100%;
+}
+div#img1{background:#fff url("../../img/web/slider/diving1.jpg") 100%/cover;}
+div#img2{background:#fff url("../../img/web/slider/diving2.jpg") 100%/cover;}
+div#img3{background:#fff url("../../img/web/slider/diving3.jpg") 100%/contain;}
+
+li.anim-slide:nth-of-type(3)>h1
+{
+    margin: 0;
+    font-size:60px;
+    color: #ffffff;
+}
+h1#H{top:30%;left: 25%;}
+h1#o{top:30%;left: 29%;}
+h1#l{top:30%;left: 32%;}
+h1#a{top:30%;left: 34%;}
+h1#i{top:30%;left: 40%;}
+h1#t{top:30%;left: 42%;}
+h1#mark{top:30%;left: 45%;}
+h1#pt{top:30%;left: 47%;}
+
+
