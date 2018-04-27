@@ -1,59 +1,15 @@
-
 <?php
-/*
-* Mysql database class - only one connection alowed
-*/
-class Conexion {
-	private $_connection;
-	private static $_instance; //The single instance
-	private $_host = "mysql://mysql:3306";
-	private $_username = "oscar";
-	private $_password = "Ch3Tu123";
-	private $_database = "sampledb";
-	/*
-	Get an instance of the Database
-	@return Instance
-	*/
-	public static function getInstance() {
-		if(!self::$_instance) { // If no instance then make one
-			self::$_instance = new self();
-		}
-		return self::$_instance;
-	}
-	// Constructor
-	private function __construct() {
-		$this->_connection = new mysqli($this->_host, $this->_username, $this->_password, $this->_database);
-	
-		// Error handling
-		if(mysqli_connect_error()) {
-			trigger_error("Failed to conencto to MySQL: " . mysql_connect_error(),
-				 E_USER_ERROR);
-		}
-	}
-	// Magic method clone is empty to prevent duplication of connection
-	private function __clone() { }
-	// Get mysqli connection
-	public function getCnx() {
-		return $this->_connection;
-	}
+$enlace = mysqli_connect("mysql", "oscar", "Ch3Tu123", "sampledb");
+
+if (!$enlace) {
+    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+    echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+    echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+    exit;
 }
+
+echo "Éxito: Se realizó una conexión apropiada a MySQL! La base de datos mi_bd es genial." . PHP_EOL;
+echo "Información del host: " . mysqli_get_host_info($enlace) . PHP_EOL;
+
+mysqli_close($enlace);
 ?>
-
-<?php
-
-
- 	$db = Conexion::getInstance();
-    $mysqli = $db->getCnx(); 
-    $sql_query = "SELECT * FROM db_acceso";
-    $result = $mysqli->query($sql_query);
-
-    while ($row = $result->fetch_object()) {
-    	$data[] = $row; 
-    }
-    echo "<pre>";
-    print_r($data);
-    echo "</pre>";
-?>
-
-
-
