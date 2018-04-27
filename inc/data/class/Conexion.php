@@ -6,7 +6,7 @@
 class Conexion {
 	private $_connection;
 	private static $_instance; //The single instance
-	private $_host = "localhost";
+	private $_host = "mysql";
 	private $_username = "oscar";
 	private $_password = "Ch3Tu123";
 	private $_database = "sampledb";
