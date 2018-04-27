@@ -22,8 +22,7 @@ class Conexion {
 	}
 	// Constructor
 	private function __construct() {
-		$this->_connection = new mysqli($this->_host, $this->_username, 
-			$this->_password, $this->_database);
+		$this->_connection = new mysqli($this->_host, $this->_username, $this->_password, $this->_database);
 	
 		// Error handling
 		if(mysqli_connect_error()) {
@@ -45,10 +44,15 @@ class Conexion {
 
  	$db = Conexion::getInstance();
     $mysqli = $db->getCnx(); 
-    $sql_query = "SELECT * FROM db_nivel";
+    $sql_query = "SELECT * FROM db_acceso";
     $result = $mysqli->query($sql_query);
 
-    print_r($result);
+    while ($row = $result->fetch_object()) {
+    	$data[] = $row; 
+    }
+    echo "<pre>";
+    print_r($data);
+    echo "</pre>";
 ?>
 
 
