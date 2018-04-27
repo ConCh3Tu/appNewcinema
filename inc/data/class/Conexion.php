@@ -7,8 +7,8 @@ class Conexion {
 	private $_connection;
 	private static $_instance; //The single instance
 	private $_host = "localhost";
-	private $_username = "root";
-	private $_password = "root";
+	private $_username = "oscar";
+	private $_password = "Ch3Tu123";
 	private $_database = "sampledb";
 	/*
 	Get an instance of the Database
