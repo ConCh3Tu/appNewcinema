@@ -16,12 +16,13 @@
 			}else {
 				$sql = "SELECT * FROM db_acceso WHERE acc_login = '".$log."' and acc_clave= PASSWORD('$clv')";
 				
-				$rs = mysql_query($sql,Conexion::cnx());				
-				if (mysql_num_rows($rs) == 0) {
-					$data['error'] = "Los datos no coinciden o no esta habilitado";
+				$rs = mysqli_query(Conexion::cnx(),$sql);				
+
+				if ($rs->num_rows === 0) {
+					$data['error'] = "Lo sentimos. No se pudo encontrar una coincidencia o no esta habilitado";
 					$data['op']	= 1;														
 				}else{
-					if ($reg=mysql_fetch_array($rs)) {
+					if ($reg=mysqli_fetch_assoc($rs)) {
 						$_SESSION['user'] = $reg['acc_login'];
 						$_SESSION['nivel'] = $reg['acc_nivel'];
 						$_SESSION['iduser'] = $reg['acc_id'];						
@@ -38,8 +39,8 @@
 		}
 		public function nivelSelect() {
 			$sql = "SELECT * FROM db_nivel";
-			$rs=mysql_query($sql,Conexion::cnx());
-			while ($reg=mysql_fetch_assoc($rs)) {
+			$rs = mysqli_query(Conexion::cnx(),$sql);							
+			while ($reg=mysqli_fetch_assoc($rs)) {
 				$this->nivels[]=$reg;				
 			}				
 			
@@ -47,26 +48,26 @@
 		}		
 		public function nivel() {
 			$sql = "SELECT * FROM db_nivel WHERE niv_id = '".$_SESSION['nivel']. "'";
-			$rs=mysql_query($sql,Conexion::cnx());
-			if ($reg=mysql_fetch_assoc($rs)) {
-				$this->nivel[]=$reg;
-			}
+			$rs=mysqli_query(Conexion::cnx(),$sql);
+			$reg=mysqli_fetch_assoc($rs);
+			$this->nivel[]=$reg;
+			
 			return $this->nivel;
 		}
 		public function getGenero() {					
-			$rs=mysql_query($sqlc,Conexion::cnx());		
+			// $rs=mysqli_query($sqlc,Conexion::cnx());		
 			$sql = "SELECT * FROM db_genero";
-			$rs=mysql_query($sql,Conexion::cnx());		
-			while ($reg=mysql_fetch_assoc($rs)) {
+			$rs = mysqli_query(Conexion::cnx(),$sql);										
+			while ($reg=mysqli_fetch_assoc($rs)) {
 				$this->genero[]=$reg;				
 			}									
 			return $this->genero;
 		}
 
 		public function getGeneroPaginacion($page) {			
-			$sqlNum = "SELECT count(*) AS total FROM db_genero";			
-			$rs=mysql_query($sqlNum,Conexion::cnx());	
-			$num_tatal = mysql_fetch_assoc($rs);					
+			$sqlNum = "SELECT count(*) AS total FROM db_genero";	
+			$rs = mysqli_query(Conexion::cnx(),$sqlNum);													
+			$num_tatal = mysqli_fetch_assoc($rs);					
 
 			if ($num_tatal['total'] > 0) {			
 				$rows_page = 4;
@@ -97,8 +98,8 @@
 				}
 			
 				$sql = "SELECT * FROM db_genero LIMIT $offset, $rows_page";			
-				$rs=mysql_query($sql,Conexion::cnx());		
-				while ($reg=mysql_fetch_assoc($rs)) {
+				$rs = mysqli_query(Conexion::cnx(),$sql);																	
+				while ($reg=mysqli_fetch_assoc($rs)) {
 					$this->genero[]=$reg;				
 				}			
 				$dlink['gro_detalle'] = $datalink;
@@ -123,8 +124,8 @@
 			}
 			$sqlNum = "SELECT count(*) AS total FROM db_genero ". $condicion;			
 			$tot = array();
-			$rs=mysql_query($sqlNum,Conexion::cnx());	
-			$num_total = mysql_fetch_assoc($rs);					
+			$rs=mysqli_query(Conexion::cnx(),$sqlNum);	
+			$num_total = mysqli_fetch_assoc($rs);					
 			$tot['total'] = $num_total['total'];
 			if ($tot['total'] > 0) {
 				$rows_page =10;
@@ -148,8 +149,8 @@
 			}
 			$sqlNum = "SELECT count(*) AS total FROM db_genero ". $condicion;			
 
-			$rs=mysql_query($sqlNum,Conexion::cnx());	
-			$num_total = mysql_fetch_assoc($rs);					
+			$rs=mysqli_query(Conexion::cnx(),$sqlNum);	
+			$num_total = mysqli_fetch_assoc($rs);					
 			$total = $num_total['total'];
 
 			if ($total > 0) {
@@ -163,8 +164,8 @@
 				$offset = ($page_num - 1) * $rows_page;
 
 				$sql = "SELECT * FROM db_genero ".$condicion." ORDER BY gro_id ASC LIMIT $offset, $rows_page";			
-				$rs=mysql_query($sql,Conexion::cnx());		
-				while ($reg=mysql_fetch_assoc($rs)) {
+				$rs=mysqli_query(Conexion::cnx(),$sql);		
+				while ($reg=mysqli_fetch_assoc($rs)) {
 					$this->genero[]=$reg;				
 				}				
 
@@ -179,8 +180,8 @@
 			$dataGro = array();
 			$sql = "SELECT CONCAT(SUBSTRING(g.gro_detalle, 1,1),'-', p.pel_codigo) AS cod, (p.pel_codigo + 0) AS nextCod FROM db_pelicula p INNER JOIN db_genero g ON p.pel_genero = g.gro_id WHERE g.gro_id = $id ORDER BY p.pel_codigo DESC LIMIT 0,1";
 			// echo $sql;
-			$rs=mysql_query($sql,Conexion::cnx());		
-			$reg=mysql_fetch_assoc($rs);
+			$rs=mysqli_query(Conexion::cnx(),$sql);		
+			$reg=mysqli_fetch_assoc($rs);
 			if ($reg == '') {
 				$nm = substr($nm,0,1)."-0000";
 				$reg = array('cod' => $nm, 'nextCod' => 0 );
@@ -199,11 +200,11 @@
 			$key     = $data['m-cod'];
 			$defi    = $data['m-defi'];
 			$sql = "INSERT INTO db_genero (gro_detalle,gro_key,gro_defi) VALUES ('$detalle','$key','$defi') ";			
-			$rs=mysql_query($sql,Conexion::cnx());
+			$rs=mysqli_query(Conexion::cnx(),$sql);
 			if($rs) {
 				$sqlS = "SELECT * FROM db_genero WHERE gro_key = '$key' ";
-				$rsS=mysql_query($sqlS,Conexion::cnx());
-				$idreg=mysql_fetch_assoc($rsS);
+				$rsS=mysqli_query(Conexion::cnx(),$sqlS);
+				$idreg=mysqli_fetch_assoc($rsS);
 
 				$resp['success'] = true;
 				$resp['data'] = $idreg;
@@ -224,11 +225,11 @@
 			}
 
 			$sql = "UPDATE db_genero SET gro_detalle = '$detalle' $defi WHERE gro_key = '$key' ";			
-			$rs=mysql_query($sql,Conexion::cnx());
+			$rs=mysqli_query(Conexion::cnx(),$sql);
 			if($rs) {
 				$sqlS = "SELECT * FROM db_genero WHERE gro_key = '$key' ";
-				$rsS=mysql_query($sqlS,Conexion::cnx());
-				$idreg=mysql_fetch_assoc($rsS);
+				$rsS=mysqli_query(Conexion::cnx(),$sqlS);
+				$idreg=mysqli_fetch_assoc($rsS);
 
 				$resp['success'] = true;
 				$resp['data'] = $idreg;
@@ -241,7 +242,7 @@
 		public function deleteGenero($data){
 			$id = $data['md-id'];									
 			$sql = "DELETE FROM db_genero  WHERE gro_id = '$id' ";			
-			$rs=mysql_query($sql,Conexion::cnx());
+			$rs=mysqli_query(Conexion::cnx(),$sql);
 			if($rs) {				
 				$resp['success'] = true;						
 			}else {
@@ -266,7 +267,7 @@
 
 
 			$sql = "INSERT INTO db_pelicula (pel_titulo, pel_director, pel_anio, pel_genero, pel_actor1, pel_poster, pel_sinopsis, pel_codigo, pel_usurio ) VALUES ( '$titulo', '$director', '$anio', $genero, '$actor', '$url', '$sinopsis', $cod, $user )";
-			$rs=mysql_query($sql,Conexion::cnx());			
+			$rs=mysqli_query(Conexion::cnx(),$sql);			
 			if($rs) {
 				$resp['success'] = true;
 			}else {

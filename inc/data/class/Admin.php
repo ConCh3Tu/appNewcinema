@@ -13,11 +13,11 @@ class Admin {
 		$defi    = $data['m-defi'];
 		$key     = $data['m-cod'];
 		$sql = "INSERT INTO db_nivel (niv_detalle,niv_key,niv_defi) VALUES ('$detalle','$key','$defi') ";			
-		$rs=mysql_query($sql,Conexion::cnx());
+		$rs=mysqli_query(Conexion::cnx(),$sql);
 		if($rs) {
 			$sqlS = "SELECT * FROM db_nivel WHERE niv_key = '$key' ";
-			$rsS=mysql_query($sqlS,Conexion::cnx());
-			$idreg=mysql_fetch_assoc($rsS);
+			$rsS=mysqli_query(Conexion::cnx(),$sqlS);
+			$idreg=mysqli_fetch_assoc($rsS);
 			$this->resp = $idreg;
 		}			
 		return $this->resp;	
@@ -31,11 +31,11 @@ class Admin {
 			$defi = ", niv_defi = '$defi' ";
 		}
 		$sql = "UPDATE db_nivel SET niv_detalle = '$detalle' $defi WHERE niv_key = '$key' ";			
-		$rs=mysql_query($sql,Conexion::cnx());
+		$rs=mysqli_query(Conexion::cnx(),$sql);
 		if($rs) {
 			$sqlS = "SELECT * FROM db_nivel WHERE niv_key = '$key' ";
-			$rsS=mysql_query($sqlS,Conexion::cnx());
-			$idreg=mysql_fetch_assoc($rsS);
+			$rsS=mysqli_query(Conexion::cnx(),$sqlS);
+			$idreg=mysqli_fetch_assoc($rsS);
 			$this->resp = $idreg;			
 		}
 		return $this->resp;
@@ -44,7 +44,7 @@ class Admin {
 	public function deleteNivel($data){
 		$id = $data['md-id'];									
 		$sql = "DELETE FROM db_nivel  WHERE niv_id = '$id' ";			
-		$rs=mysql_query($sql,Conexion::cnx());
+		$rs=mysqli_query(Conexion::cnx(),$sql);
 		if($rs) {		
 			$res['id'] = $id;		
 			$res['rs'] = $rs;
@@ -64,8 +64,8 @@ class Admin {
 		}
 		$sqlNum = "SELECT count(*) AS total FROM db_nivel ". $condicion;			
 		$tot = array();
-		$rs=mysql_query($sqlNum,Conexion::cnx());	
-		$num_total = mysql_fetch_assoc($rs);					
+		$rs=mysqli_query(Conexion::cnx(),$sqlNum);	
+		$num_total = mysqli_fetch_assoc($rs);					
 		$tot['total'] = $num_total['total'];
 		if ($tot['total'] > 0) {			
 			$tot['totalp'] = ceil($tot['total'] / $rows_page);				
@@ -84,8 +84,8 @@ class Admin {
 		}
 		$offset = ($page_num - 1) * $rows_page;
 		$sql = "SELECT * FROM db_nivel ".$condicion." ORDER BY niv_id ASC LIMIT $offset, $rows_page";			
-		$rs=mysql_query($sql,Conexion::cnx());		
-		while ($reg=mysql_fetch_assoc($rs)) {
+		$rs=mysqli_query(Conexion::cnx(),$sql);		
+		while ($reg=mysqli_fetch_assoc($rs)) {
 			$this->nivel[]=$reg;				
 		}	
 				
