@@ -3,8 +3,8 @@
 	class Conexion {
 		public static function cnx() {			
 			
-			$cnn=mysqli_connect("localhost","root","root","videocine");
-			// $cnn=mysqli_connect("mysql", "oscar", "Ch3Tu123", "sampledb");
+			// $cnn=mysqli_connect("localhost","root","root","videocine");
+			$cnn=mysqli_connect("mysql", "oscar", "Ch3Tu123", "sampledb");
 			
 			/* verificar la conexión */
 			if (mysqli_connect_errno()) {
