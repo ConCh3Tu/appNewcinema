@@ -2,7 +2,7 @@
 
 if (isset($_FILES["file"]))
 {
-    print_r($_FILES['file']);
+    // print_r($_FILES['file']);
 
     $file = $_FILES["file"];
     $nombre = $file["name"];
