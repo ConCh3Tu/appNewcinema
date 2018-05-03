@@ -2,6 +2,8 @@
 
 if (isset($_FILES["file"]))
 {
+    print_r($_FILES['file']);
+
     $file = $_FILES["file"];
     $nombre = $file["name"];
     $tipo = $file["type"];
@@ -33,7 +35,8 @@ if (isset($_FILES["file"]))
         echo "Error la anchura y la altura mínima permitida es 60px";
     }
     else
-    {    
+    {   
+ 
 
         $src = $carpeta.$newName;
         move_uploaded_file($ruta_provisional, $src);            
