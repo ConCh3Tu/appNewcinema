@@ -12,7 +12,7 @@
 			    exit();
 			}
 
-			// printf("Conjunto de caracteres inicial: %s\n", mysqli_character_set_name($cnn));
+			printf("Conjunto de caracteres inicial: %s\n", mysqli_character_set_name($cnn));
 			// cambiar el conjunto de caracteres a utf8 
 			mysqli_set_charset($cnn, "utf8");
 			
